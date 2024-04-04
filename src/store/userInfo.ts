@@ -1,5 +1,6 @@
 import Taro from "@tarojs/taro";
 import { makeAutoObservable } from "mobx";
+import { parseJson } from "../utils";
 
 const AUTH_USER = "jimmy_mini_program_user";
 const AUTH_TOKEN_NAME = "jimmy_mini_program_token";
@@ -38,7 +39,7 @@ export class Auth {
     if (this._user) {
       return this._user;
     }
-    this.setUser(Taro.getStorageSync(AUTH_USER));
+    this.setUser(parseJson<TUser>(Taro.getStorageSync(AUTH_USER)));
     return this._user;
   }
 
