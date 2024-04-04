@@ -19,7 +19,12 @@ const config = {
     options: {},
   },
   framework: "react",
-  compiler: "webpack5",
+  compiler: {
+    type: "webpack5",
+    prebundle: {
+      exclude: ["taro-ui"],
+    },
+  },
   cache: {
     enable: false, // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
@@ -79,6 +84,9 @@ const config = {
     "@/components": path.resolve(__dirname, "..", "src/components"),
     "@/api": path.resolve(__dirname, "..", "src/api"),
     "@/services": path.resolve(__dirname, "..", "src/services"),
+    "@/core": path.resolve(__dirname, "..", "src/core"),
+    "@/utils": path.resolve(__dirname, "..", "src/utils"),
+    "@/store": path.resolve(__dirname, "..", "src/store"),
   },
 };
 
