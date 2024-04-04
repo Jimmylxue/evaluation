@@ -38,7 +38,7 @@ export class Auth {
     if (this._user) {
       return this._user;
     }
-    this.setToken(Taro.getStorageSync(AUTH_USER));
+    this.setUser(Taro.getStorageSync(AUTH_USER));
     return this._user;
   }
 

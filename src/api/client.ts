@@ -24,9 +24,19 @@ enum ErrorCode {
   TOKEN_EXPIRED = 401,
 }
 
+// const APP_ENV = process.env.APP_ENV || "dev";
+const APP_ENV: any = "prod";
+
+let serverUrl: string;
+
 function getRequestUrl(url: string) {
   // const serverUrl = 'https://api.jimmyxuexue.top'
-  const serverUrl = "http://127.0.0.1:9999";
+  serverUrl = "http://127.0.0.1:9999";
+  if (APP_ENV === "dev") {
+    serverUrl = "http://127.0.0.1:9999";
+  } else {
+    serverUrl = "https://api.jimmyxuexue.top";
+  }
   return `${serverUrl}${url}`;
 }
 
@@ -75,7 +85,6 @@ let loginLock = new AsyncLock();
 async function fetch(option: Taro.request.Option) {
   const res = await Taro.request(option);
   if (res.statusCode !== 200 || res.data.code !== 200) {
-    console.log("sss", res.data?.message);
     showToast({ title: res.data?.message || res.data?.result });
     throw {
       statusCode: res.statusCode,
