@@ -43,7 +43,7 @@ export default function Register() {
           title="昵称"
           // @ts-ignore
           type="nickname"
-          placeholder="请输入您的用户昵称"
+          placeholder="点击获取昵称"
           value={userInfo.username}
           onChange={(e) => {
             setUserInfo({ ...userInfo, username: String(e) });
@@ -56,7 +56,6 @@ export default function Register() {
           type="secondary"
           circle={true}
           onClick={async () => {
-            console.log("同意");
             const code = await getLoginCode();
             await mutateAsync({ ...userInfo, code });
           }}

@@ -69,3 +69,17 @@ export function useLogin(
     }
   >((data) => post("/user/login_by_mini_program", data), options);
 }
+
+export function useUpdateUser(
+  options?: UseMutationOptions<
+    TUser,
+    ClientError,
+    Pick<TUser, "id" | "avatar" | "username">
+  >
+) {
+  return useMutation<
+    TUser,
+    ClientError,
+    Pick<TUser, "id" | "avatar" | "username">
+  >((data) => post("/user/update", data), options);
+}

@@ -26,6 +26,7 @@ enum ErrorCode {
 
 // const APP_ENV = process.env.APP_ENV || "dev";
 const APP_ENV: any = "prod";
+// const APP_ENV: any = "dev";
 
 let serverUrl: string;
 
@@ -128,6 +129,9 @@ async function loginRequiredRequest({
       data: {
         code,
         ...(getLaunchInfo() || {}),
+        // 这块因为后端设计 login 时需要传这两个 就先这样兼容一下吧
+        username: data?.username || undefined,
+        avatar: data?.avatar || undefined,
       },
     });
     const newToken = res.token;

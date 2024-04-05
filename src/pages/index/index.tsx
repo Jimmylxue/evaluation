@@ -1,8 +1,7 @@
 import { useBingBg } from "@/services/login";
-import { View, Text, Image } from "@tarojs/components";
-import { AtButton, AtIcon } from "taro-ui";
+import { View, Image } from "@tarojs/components";
+import { AtIcon } from "taro-ui";
 import { observer } from "mobx-react-lite";
-import { auth } from "@/store/userInfo";
 import {
   previewImage,
   downloadFile,
@@ -11,25 +10,8 @@ import {
 } from "@tarojs/taro";
 export default observer(function Index() {
   const { data } = useBingBg(["bingBg"], {});
-  console.log("data", data);
   return (
     <View className="index">
-      <Text className=" text-red-400">Hello world!</Text>
-      <Text>测评统计</Text>
-      <View>
-        <Text>用户信息：{JSON.stringify(auth.user)}</Text>
-      </View>
-
-      <AtButton
-        type="secondary"
-        circle={true}
-        onClick={() => {
-          console.log("同意");
-        }}
-      >
-        开始测评
-      </AtButton>
-
       {data?.images?.map((item, index) => (
         <View key={index} className="mb-2">
           <View className="mb-1 font-sans font-semibold">{item.title}</View>

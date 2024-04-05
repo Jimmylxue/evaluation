@@ -35,6 +35,15 @@ export class Auth {
     return this._token;
   }
 
+  setToken(token?: string) {
+    console.log("set", token);
+    this._token = token;
+    Taro.setStorage({
+      key: AUTH_TOKEN_NAME,
+      data: token,
+    });
+  }
+
   get user() {
     if (this._user) {
       return this._user;
@@ -51,12 +60,8 @@ export class Auth {
     });
   }
 
-  setToken(token?: string) {
-    this._token = token;
-    Taro.setStorage({
-      key: AUTH_TOKEN_NAME,
-      data: token,
-    });
+  get isLogin() {
+    return !!this.token && !!this.user;
   }
 
   clearAuth() {
