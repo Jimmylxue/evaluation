@@ -29,4 +29,10 @@ export default defineAppConfig({
       },
     ],
   },
+  requiredPrivateInfos: ["getLocation", "chooseLocation"],
+  permission: {
+    "scope.userLocation": {
+      desc: "你的位置信息将用于小程序位置接口的效果展示",
+    },
+  },
 });

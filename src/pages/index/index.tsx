@@ -8,10 +8,15 @@ import {
   showToast,
   saveImageToPhotosAlbum,
 } from "@tarojs/taro";
+import { locationInfo } from "@/store/location";
+
+locationInfo.updateLocation();
 export default observer(function Index() {
   const { data } = useBingBg(["bingBg"], {});
+
   return (
     <View className="index">
+      {locationInfo?.address?.formatted_address}
       {data?.images?.map((item, index) => (
         <View key={index} className="mb-2">
           <View className="mb-1 font-sans font-semibold">{item.title}</View>
