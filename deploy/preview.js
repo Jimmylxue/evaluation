@@ -1,5 +1,5 @@
 /**
- * 这个暂时还没有使用
+ * 这个暂时还没有使用 这个是支付宝小程序的上传工具
  */
 const { minidev } = require("minidev");
 const { get } = require("https");
