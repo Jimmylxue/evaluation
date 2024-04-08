@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build:weapp": "taro build --type weapp",
+    "upload": "node ./deploy/index.js --version=0.0.5",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
     "build:tt": "taro build --type tt",
@@ -77,6 +78,9 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "minidev": "^2.1.4",
+    "minimist": "^1.2.8",
+    "miniprogram-ci": "^1.9.15",
     "postcss": "^8.4.38",
     "postcss-rem-to-responsive-pixel": "^6.0.1",
     "react-refresh": "^0.11.0",
