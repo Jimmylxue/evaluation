@@ -1,6 +1,6 @@
 import { useBingBg } from "@/services/login";
 import { View, Image } from "@tarojs/components";
-import { AtIcon } from "taro-ui";
+import { AtButton, AtIcon } from "taro-ui";
 import { observer } from "mobx-react-lite";
 import {
   previewImage,
@@ -17,6 +17,13 @@ export default observer(function Index() {
   return (
     <View className="index">
       {locationInfo?.address?.formatted_address}
+      <AtButton
+        onClick={() => {
+          locationInfo.openNowLocationMap();
+        }}
+      >
+        打开地图
+      </AtButton>
       {data?.images?.map((item, index) => (
         <View key={index} className="mb-2">
           <View className="mb-1 font-sans font-semibold">{item.title}</View>

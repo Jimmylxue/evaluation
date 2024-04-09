@@ -1,5 +1,5 @@
 import { post } from "@/api/client";
-import { getLocation } from "@/core/location";
+import { getLocation, openLocation } from "@/core/location";
 import { makeAutoObservable } from "mobx";
 
 type TAddressInfo = {
@@ -46,6 +46,9 @@ class LocationInfo {
     return this._address;
   }
 
+  /**
+   * 更新当前定位
+   */
   updateLocation() {
     getLocation(
       (res) => {
@@ -57,6 +60,9 @@ class LocationInfo {
     );
   }
 
+  /**
+   * 逆地址解析 - 获取位置信息
+   */
   async transformIpToAddress() {
     const res = await post("/location/getAddress", {
       latitude: this.latitude,
@@ -73,6 +79,17 @@ class LocationInfo {
       towncode: res?.addressComponent?.towncode,
       formatted_address: res?.formatted_address,
     };
+  }
+
+  /**
+   * 根据当前定位 - 打开地图
+   */
+  openNowLocationMap() {
+    openLocation({
+      longitude: this.longitude,
+      latitude: this.latitude,
+      scale: 16,
+    });
   }
 }
 

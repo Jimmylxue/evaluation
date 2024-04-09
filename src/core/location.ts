@@ -89,3 +89,12 @@ export function getLocation(
     }
   ).then(fulfilled, rejected);
 }
+
+/**
+ * 根据经纬度 - 打开地图
+ */
+export function openLocation(params: Taro.openLocation.Option) {
+  Taro.openLocation({
+    ...params,
+  });
+}
