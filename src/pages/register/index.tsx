@@ -16,7 +16,7 @@ export default function Register() {
     username: "",
   });
   const { mutateAsync } = useLogin({
-    onSuccess: (data) => {
+    onSuccess: () => {
       showToast({ title: "登录成功" });
     },
   });
@@ -29,7 +29,6 @@ export default function Register() {
           open-type="chooseAvatar"
           size="mini"
           onChooseAvatar={(e) => {
-            console.log(e.detail);
             setUserInfo({ ...userInfo, avatar: e.detail?.avatarUrl! });
           }}
         >
