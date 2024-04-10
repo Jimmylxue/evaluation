@@ -1,23 +1,20 @@
 import { Button, ButtonProps } from "@tarojs/components";
-import { ReactNode } from "react";
+import { FC } from "react";
 
-type TProps = {
-  children: ReactNode;
-  openType?: ButtonProps.OpenType;
-};
+interface TProps extends ButtonProps {}
 
-export function EmptyButton({ children, openType }: TProps) {
+export const EmptyButton: FC<TProps> = ({ children, openType, ...args }) => {
   return (
     <Button
       plain
       style={{
         border: 0,
         padding: 0,
-        margin: 0,
       }}
       openType={openType}
+      {...args}
     >
       {children}
     </Button>
   );
-}
+};

@@ -1,3 +1,4 @@
+import { switchTab } from "@/core/route";
 import { ButtonProps } from "@tarojs/components";
 
 export const FunctionList = [
@@ -21,9 +22,13 @@ export const FunctionList = [
   {
     name: "壁纸大全",
     icon: "file-png",
+    action: () => {
+      switchTab("/pages/wallpaper/index");
+    },
   },
 ] as {
   name: string;
   icon: string;
   openType?: ButtonProps.OpenType;
+  action?: () => void;
 }[];

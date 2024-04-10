@@ -49,7 +49,12 @@ export default observer(function Person() {
         <View>相关服务</View>
         <View className=" flex justify-between flex-wrap mt-2">
           {FunctionList.map((item, index) => (
-            <EmptyButton key={index} openType={item.openType}>
+            <EmptyButton
+              key={index}
+              openType={item.openType}
+              className=" mb-2 mx-0"
+              onClick={item.action}
+            >
               <View>
                 <View className=" size-[140rpx] bg-[#f9f9f9] flex justify-center items-center rounded-2xl">
                   <AtIcon value={item.icon} size="30" color="#070920"></AtIcon>
@@ -60,8 +65,12 @@ export default observer(function Person() {
               </View>
             </EmptyButton>
           ))}
-          <View className=" flex flex-col justify-center items-center size-[140rpx]"></View>
-          <View className=" flex flex-col justify-center items-center size-[140rpx]"></View>
+          <EmptyButton>
+            <View className=" flex flex-col justify-center items-center size-[140rpx]"></View>
+          </EmptyButton>
+          <EmptyButton>
+            <View className=" flex flex-col justify-center items-center size-[140rpx]"></View>
+          </EmptyButton>
         </View>
       </View>
       {node}

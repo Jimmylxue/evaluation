@@ -5,3 +5,9 @@ export function navigate(url: string) {
     url,
   });
 }
+
+export function switchTab(url: string) {
+  return Taro.switchTab({
+    url,
+  });
+}
