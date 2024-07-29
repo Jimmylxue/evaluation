@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: "今天你摸鱼了吗🐟",
+  navigationBarTitleText: "时间管理大师",
   enableShareAppMessage: true,
 });

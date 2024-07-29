@@ -4,6 +4,8 @@ export default defineAppConfig({
     "pages/wallpaper/index",
     "pages/person/index",
     "pages/register/index",
+    "pages/timeManager/index",
+    "pages/luckDraw/index",
   ],
   window: {
     backgroundTextStyle: "light",
@@ -26,12 +28,12 @@ export default defineAppConfig({
         iconPath: "./assets/icon/home-default.png",
         selectedIconPath: "./assets/icon/home-selected.png",
       },
-      {
-        pagePath: "pages/wallpaper/index",
-        text: "图库",
-        iconPath: "./assets/icon/pic-default.png",
-        selectedIconPath: "./assets/icon/pic-selected.png",
-      },
+      // {
+      //   pagePath: "pages/wallpaper/index",
+      //   text: "图库",
+      //   iconPath: "./assets/icon/pic-default.png",
+      //   selectedIconPath: "./assets/icon/pic-selected.png",
+      // },
       {
         pagePath: "pages/person/index",
         text: "个人中心",

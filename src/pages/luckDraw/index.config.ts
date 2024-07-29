@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: "今天你摸鱼了吗🐟",
+  navigationBarTitleText: "吃什么转盘",
   enableShareAppMessage: true,
 });
