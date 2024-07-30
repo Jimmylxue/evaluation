@@ -1,27 +1,24 @@
 import { calculateProgress, getTodayYMD, timeUntil } from "@/utils/time";
+import { useUserConfig } from "./useUserConfig";
 
 export function useTodayJobData() {
   const { year, month, day } = getTodayYMD();
+  const { workTime, afternoonTime, salary } = useUserConfig();
 
   /**
    * 上班时间
    */
-  const workStartTime = "9:00:00";
+  const workStartTime = workTime?.[0] || "09:00:00";
 
   /**
    * 午休时间
    */
-  const afternoonRestTime = "11:50:00";
+  const afternoonRestTime = afternoonTime?.[0] || "11:50:00";
 
   /**
    * 下班时间
    */
-  const goOffWorkTime = "18:00:00";
-
-  /**
-   * 薪水
-   */
-  const salary = 15300;
+  const goOffWorkTime = workTime?.[1] || "18:00:00";
 
   /**
    * 日薪

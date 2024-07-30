@@ -6,7 +6,8 @@ export type TPage =
   | "/pages/person/index"
   | "/pages/register/index"
   | "/pages/timeManager/index"
-  | "/pages/luckDraw/index";
+  | "/pages/luckDraw/index"
+  | "/subpackages/luckDraw/pages/index/index";
 
 export function navigate(url: TPage) {
   return Taro.navigateTo({

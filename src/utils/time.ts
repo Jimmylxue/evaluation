@@ -24,8 +24,13 @@ export function timeUntil(targetTime) {
 
   // 计算年、月、日
   const years = targetDate.getFullYear() - now.getFullYear();
-  const months = targetDate.getMonth() - now.getMonth() + years * 12;
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  // const months = targetDate.getMonth() - now.getMonth() + years * 12;
+  let months = targetDate.getMonth() - now.getMonth() + years * 12;
+
+  if (days < 30) {
+    months--;
+  }
 
   // 计算小时、分钟和秒
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -103,4 +108,157 @@ export function getPreviousAndNextMonth(dateStr) {
     previousMonthDate: previousMonthDate.format("YYYY-MM-DD"),
     nextMonthDate: nextMonthDate.format("YYYY-MM-DD"),
   };
+}
+
+/**
+ * 根据周几 获取 完整的日期格式
+ */
+export function getDatesByDayNumber(dayNumber) {
+  // 获取今天的日期
+  const today = dayjs();
+
+  // 计算本周的开始日期（周一）
+  const startOfWeek = today.startOf("week").add(1, "day"); // 将周日调整为周一
+
+  // 判断今天的周数是否大于传入的 dayNumber
+  let targetDate;
+  if (today.day() >= dayNumber) {
+    // 如果今天的周数大于 dayNumber，获取下一周的日期
+    targetDate = startOfWeek.add(7, "day").add(dayNumber - 1, "day");
+  } else {
+    // 否则获取本周的日期
+    targetDate = startOfWeek.add(dayNumber - 1, "day");
+  }
+
+  // 返回格式化后的日期
+  return targetDate.format("YYYY-MM-DD");
+}
+
+export function getDaysInMonth(month) {
+  // 确保传入的月份在 1 到 12 之间
+  if (month < 1 || month > 12) {
+    throw new Error("月份必须在 1 到 12 之间");
+  }
+
+  // 获取当前年份
+  const year = dayjs().year();
+
+  // 获取指定月份的第一天
+  const startOfMonth = dayjs(`${year}-${month}-01`);
+
+  // 获取下一个月份的第一天
+  const startOfNextMonth = startOfMonth.add(1, "month");
+
+  // 计算该月份的天数
+  const daysInMonth = startOfNextMonth.diff(startOfMonth, "day");
+
+  return daysInMonth;
+}
+
+/**
+ * 获取下一个周号
+ * 周号 1-7 表示 周一到周日
+ */
+export function getNextDayNumber(dayNumber: number) {
+  if (dayNumber === 7) {
+    return 1;
+  }
+  return dayNumber + 1;
+}
+
+/**
+ * 获取前一个周号
+ * 周号 1-7 表示 周一到周日
+ */
+export function getPrevDayNumber(dayNumber: number) {
+  if (dayNumber === 1) {
+    return 7;
+  }
+  return dayNumber - 1;
+}
+
+export enum ECheckStatus {
+  小于开始时间,
+  处于两个时间内,
+  大于结束时间,
+}
+
+export function checkTimeStatus(
+  startTime: string,
+  endTime: string,
+  checkTime: string
+) {
+  // 将时间字符串转换为 Date 对象
+  const startDate = new Date(startTime);
+  const endDate = new Date(endTime);
+  const checkDate = new Date(checkTime);
+
+  // 检查状态
+  if (checkDate < startDate) {
+    return ECheckStatus.小于开始时间;
+  } else if (checkDate > endDate) {
+    return ECheckStatus.处于两个时间内;
+  } else {
+    return ECheckStatus.大于结束时间;
+  }
+}
+
+/**
+ * 传递一个日期格式 获取上周的和下周的时间
+ * 如传递 2024-07-29 则 分别为 2024-07-22 和 2024-08-05
+ */
+export function getAdjacentWeeks(dateString) {
+  // 将输入的日期字符串转换为 Date 对象
+  const date = new Date(dateString);
+
+  // 计算上周和下周的日期
+  const lastWeek = new Date(date);
+  const nextWeek = new Date(date);
+
+  // 上周的日期
+  lastWeek.setDate(date.getDate() - 7);
+
+  // 下周的日期
+  nextWeek.setDate(date.getDate() + 7);
+
+  // 格式化日期为 YYYY-MM-DD
+  const formatDate = (date) => date.toISOString().split("T")[0];
+
+  return {
+    lastWeek: formatDate(lastWeek),
+    nextWeek: formatDate(nextWeek),
+  };
+}
+
+/**
+ * 内部使用 将时间转换为妙
+ */
+function convertToSeconds(time) {
+  // 如果没有提供秒数，默认设置为 00
+  if (time.split(":").length === 2) {
+    time += ":00";
+  }
+  const [hours, minutes, seconds] = time.split(":").map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
+/**
+ * time1 是否 大于time2
+ */
+export function bigThan(time1, time2) {
+  return convertToSeconds(time1) > convertToSeconds(time2);
+}
+
+/**
+ * time1 是否 小于time2
+ */
+export function smallThan(time1, time2) {
+  return convertToSeconds(time1) < convertToSeconds(time2);
+}
+
+/**
+ * time1 是否 等于time2
+ */
+export function equalThan(time1, time2) {
+  return convertToSeconds(time1) === convertToSeconds(time2);
 }

@@ -24,6 +24,6 @@ export const actionList = [
     name: "吃什么转盘",
     desc: "拒绝选择焦虑，忙碌中找到美味，给它一个机会",
     icon: "https://image.jimmyxuexue.top/img/%E5%A4%A7%E8%BD%AC%E7%9B%98.png",
-    url: "/pages/luckDraw/index",
+    url: "/subpackages/luckDraw/pages/index/index",
   },
 ] as TActionItem[];

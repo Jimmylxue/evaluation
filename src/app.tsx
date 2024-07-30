@@ -10,6 +10,8 @@ import "taro-ui/dist/style/components/grid.scss";
 import "taro-ui/dist/style/components/progress.scss";
 import "taro-ui/dist/style/components/countdown.scss";
 import "taro-ui/dist/style/components/noticebar.scss";
+import "taro-ui/dist/style/components/fab.scss";
+import "taro-ui/dist/style/components/range.scss";
 
 export default function App(props) {
   const { QueryClientProvider, queryClient } = queryConfig();

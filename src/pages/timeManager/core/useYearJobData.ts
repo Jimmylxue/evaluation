@@ -1,22 +1,14 @@
-import {
-  calculateProgress,
-  getPreviousAndNextMonth,
-  getTodayYMD,
-  timeUntil,
-} from "@/utils/time";
+import { calculateProgress, getTodayYMD, timeUntil } from "@/utils/time";
+import { useUserConfig } from "./useUserConfig";
 
 export function useYearJobData() {
+  const { salary } = useUserConfig();
   /**
    * 发薪日
    */
   const salaryDay = 15;
-  const { year, month, day } = getTodayYMD();
+  const { year } = getTodayYMD();
 
-  const { previousMonthDate, nextMonthDate } = getPreviousAndNextMonth(
-    `${year}-${month}-${salaryDay}`
-  );
-
-  console.log("ppp", previousMonthDate, nextMonthDate);
   let yearProgress = 0;
   /**
    * 距离过年数据
@@ -32,10 +24,6 @@ export function useYearJobData() {
   );
   receiveYearSalaryMsg = timeUntil(`${Number(year) + 1}-01-01 00:00:00`);
 
-  /**
-   * 薪水
-   */
-  const salary = 15300;
   const yearMakeMoney = Number(salary * 12 * (yearProgress / 100)).toFixed(2);
   return {
     yearProgress,

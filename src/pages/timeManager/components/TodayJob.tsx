@@ -19,14 +19,20 @@ export function TodayJob() {
         />
         <View className=" w-full ml-2">
           <View className=" text-lg font-semibold text-[#333] flex items-center">
-            距离午休{" "}
-            <AtCountdown
-              className="ml-2"
-              isCard
-              hours={afterRestMsg?.hours}
-              minutes={afterRestMsg?.minutes}
-              seconds={afterRestMsg?.seconds}
-            />
+            {afternoonRestProgress === 100 ? (
+              <View>午休已结束</View>
+            ) : (
+              <View>
+                距离午休{" "}
+                <AtCountdown
+                  className="ml-2"
+                  isCard
+                  hours={afterRestMsg?.hours}
+                  minutes={afterRestMsg?.minutes}
+                  seconds={afterRestMsg?.seconds}
+                />
+              </View>
+            )}
           </View>
           <View className=" my-2">
             <AtProgress

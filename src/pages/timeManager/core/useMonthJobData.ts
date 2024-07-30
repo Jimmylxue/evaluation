@@ -4,8 +4,11 @@ import {
   getTodayYMD,
   timeUntil,
 } from "@/utils/time";
+import { useUserConfig } from "./useUserConfig";
 
 export function useMonthJobData() {
+  const { salary } = useUserConfig();
+
   /**
    * 发薪日
    */
@@ -16,7 +19,6 @@ export function useMonthJobData() {
     `${year}-${month}-${salaryDay}`
   );
 
-  console.log("ppp", previousMonthDate, nextMonthDate);
   let monthSalaryDayProgress = 0;
   /**
    * 获取薪水
@@ -39,11 +41,6 @@ export function useMonthJobData() {
     );
   }
 
-  /**
-   * 薪水
-   */
-  const salary = 15300;
-
   const monthMakeMoney = Number(
     salary * (monthSalaryDayProgress / 100)
   ).toFixed(2);
@@ -53,32 +50,4 @@ export function useMonthJobData() {
     monthSalaryDayProgress,
     receiveMonthSalaryMsg,
   };
-
-  // /**
-  //  * 日薪
-  //  */
-  // const daySalary = salary / 30;
-
-  // const offWorkMsg = timeUntil(goOffWorkTime);
-  // const afterRestMsg = timeUntil(afternoonRestTime);
-
-  // const afternoonRestProgress = calculateProgress(
-  //   `${year}-${month}-${day} ${workStartTime}`,
-  //   `${year}-${month}-${day} ${afternoonRestTime}`
-  // );
-
-  // const offWorkProgress = calculateProgress(
-  //   `${year}-${month}-${day} ${workStartTime}`,
-  //   `${year}-${month}-${day} ${goOffWorkTime}`
-  // );
-
-  // const todayMakeMoney = Number(daySalary * (offWorkProgress / 100)).toFixed(2);
-
-  // return {
-  //   offWorkMsg,
-  //   afterRestMsg,
-  //   offWorkProgress,
-  //   afternoonRestProgress,
-  //   todayMakeMoney,
-  // };
 }

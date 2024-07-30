@@ -5,7 +5,12 @@ export default defineAppConfig({
     "pages/person/index",
     "pages/register/index",
     "pages/timeManager/index",
-    "pages/luckDraw/index",
+  ],
+  subPackages: [
+    {
+      root: "subpackages/luckDraw",
+      pages: ["pages/index/index"],
+    },
   ],
   window: {
     backgroundTextStyle: "light",
