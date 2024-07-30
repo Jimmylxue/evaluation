@@ -59,6 +59,9 @@ importers:
       '@tarojs/taro-h5':
         specifier: 3.5.7
         version: 3.5.7(@types/react@18.3.3)
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       dayjs:
         specifier: ^1.11.10
         version: 1.11.12

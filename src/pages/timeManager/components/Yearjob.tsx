@@ -6,7 +6,7 @@ export function YearJob() {
   const { yearMakeMoney, yearProgress, receiveYearSalaryMsg } =
     useYearJobData();
   return (
-    <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex ">
+    <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex rounded ">
       <Image
         src="https://image.jimmyxuexue.top/img/%E8%BF%87%E5%B9%B44-copy-copy.png"
         className=" size-[60rpx] flex-shrink-0"

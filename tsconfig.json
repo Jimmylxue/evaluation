@@ -28,6 +28,7 @@
       "@/core/*":["./src/core/*"],
       "@/utils/*":["./src/utils/*"],
       "@/store/*":["./src/store/*"],
+      "@/assets/*":["./src/assets/*"],
     },
   },
   "include": ["./src", "./types"],

@@ -7,7 +7,7 @@ export function MonthJob() {
     useMonthJobData();
 
   return (
-    <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex ">
+    <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex rounded ">
       <Image
         src="https://image.jimmyxuexue.top/img/%E6%9C%89%E8%80%83%E5%8B%A4%E6%9C%AA%E5%8F%91%E8%96%AA%E9%A1%B9%E7%9B%AE.png"
         className=" size-[60rpx] flex-shrink-0"

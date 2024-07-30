@@ -13,7 +13,7 @@ export function WeekJob() {
   } = useWeekJobData();
 
   return (
-    <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex ">
+    <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex rounded ">
       <Image
         src={
           nowWeekState === ECheckStatus.小于开始时间

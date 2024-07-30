@@ -84,12 +84,14 @@ export function SlotMachineNode() {
           }}
           onEnd={(prize) => {
             showToast({
-              title: `就你吧！${prize.name}`,
+              icon: "none",
+              title: `就决定是你了！${prize.name}`,
             });
           }}
         />
         <View className=" w-[700rpx] mt-2">
           <AtButton
+            type="primary"
             onClick={() => {
               myLucky.current.play();
               setTimeout(() => {

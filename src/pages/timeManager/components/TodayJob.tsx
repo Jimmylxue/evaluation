@@ -12,7 +12,7 @@ export function TodayJob() {
   } = useTodayJobData();
   return (
     <>
-      <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex ">
+      <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex rounded ">
         <Image
           src="https://image.jimmyxuexue.top/img/%E5%8D%88%E4%BC%91%E6%A8%A1%E5%BC%8F.png"
           className=" size-[60rpx] flex-shrink-0"
