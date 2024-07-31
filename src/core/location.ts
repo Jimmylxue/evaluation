@@ -9,7 +9,6 @@ async function checkAuth(
 ) {
   Taro.getSetting({
     success: (auth) => {
-      console.log({ auth });
       if (process.env.TARO_ENV === "weapp") {
         /** 没有授权过 */
         const noAuthLocation =

@@ -85,7 +85,7 @@ let loginLock = new AsyncLock();
 
 async function fetch(option: Taro.request.Option) {
   const res = await Taro.request(option);
-  if (res.statusCode !== 200 || res.data.code !== 200) {
+  if (![200, 201].includes(res.statusCode) || res.data.code !== 200) {
     showToast({ title: res.data?.message || res.data?.result });
     throw {
       statusCode: res.statusCode,

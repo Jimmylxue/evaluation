@@ -24,8 +24,10 @@ export function useLoginDialog() {
   const modalType = useRef<TFormType>("register");
   const _user = useRef<TUser>();
   const { mutateAsync } = useLogin({
-    onSuccess: () => {
+    onSuccess: (res) => {
       showToast({ title: "登录成功" });
+      auth.setToken(res.token);
+      auth.setUser(res.user);
       closeLogin();
     },
   });
@@ -86,16 +88,12 @@ export function useLoginDialog() {
             className=" border border-solid border-transparent w-1/2 py-2 rounded-lg my-4 text-center bg-[#f6f6f6] "
             value={userInfo.username}
             onInput={(e) => {
-              console.log("ee", e);
               setTimeout(() => {
                 setUserInfo({ ...userInfo, username: e.detail.value });
               });
             }}
             // @ts-ignore
             type="nickname"
-            onBlur={(e) => {
-              console.log("blur", e);
-            }}
           />
           <AtButton
             className=" w-1/2"
