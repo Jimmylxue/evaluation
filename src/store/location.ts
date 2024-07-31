@@ -1,6 +1,6 @@
 import { post } from "@/api/client";
 import { getLocation, openLocation } from "@/core/location";
-import { makeAutoObservable } from "mobx";
+import { action, makeAutoObservable, observable } from "mobx";
 
 type TAddressInfo = {
   country: string;
@@ -22,13 +22,13 @@ class LocationInfo {
   /**
    * 纬度
    */
-  private _latitude: number;
+  @observable private _latitude: number;
   /**
    * 经度
    */
-  private _longitude: number;
+  @observable private _longitude: number;
 
-  private _address: TAddressInfo;
+  @observable private _address: TAddressInfo;
 
   constructor() {
     makeAutoObservable(this);
@@ -49,7 +49,7 @@ class LocationInfo {
   /**
    * 更新当前定位
    */
-  updateLocation() {
+  @action updateLocation() {
     getLocation(
       (res) => {
         this._latitude = res.latitude;
@@ -63,7 +63,7 @@ class LocationInfo {
   /**
    * 逆地址解析 - 获取位置信息
    */
-  async transformIpToAddress() {
+  @action async transformIpToAddress() {
     const res = await post("/location/getAddress", {
       latitude: this.latitude,
       longitude: this.longitude,

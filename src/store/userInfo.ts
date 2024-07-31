@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { makeAutoObservable } from "mobx";
+import { action, makeAutoObservable, observable } from "mobx";
 import { parseJson } from "../utils";
 
 const AUTH_USER = "jimmy_mini_program_user";
@@ -21,8 +21,8 @@ export type TUser = {
 };
 
 export class Auth {
-  private _user?: TUser;
-  private _token?: string;
+  @observable private _user?: TUser;
+  @observable private _token?: string;
   constructor() {
     makeAutoObservable(this);
   }
@@ -35,7 +35,7 @@ export class Auth {
     return this._token;
   }
 
-  setToken(token?: string) {
+  @action setToken(token?: string) {
     this._token = token;
     Taro.setStorage({
       key: AUTH_TOKEN_NAME,
@@ -51,7 +51,7 @@ export class Auth {
     return this._user;
   }
 
-  setUser(user?: TUser) {
+  @action setUser(user?: TUser) {
     this._user = user;
     Taro.setStorage({
       key: AUTH_USER,
@@ -63,7 +63,7 @@ export class Auth {
     return !!this.token && !!this.user;
   }
 
-  clearAuth() {
+  @action clearAuth() {
     this.setToken(undefined);
     Taro.removeStorageSync(AUTH_TOKEN_NAME);
     this.setUser(undefined);
