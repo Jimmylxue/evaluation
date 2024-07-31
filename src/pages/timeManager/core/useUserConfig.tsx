@@ -54,7 +54,7 @@ export const UserConfigContextProvider: FC<{ children: ReactNode }> = ({
     "13:20",
   ]);
 
-  const [salary, setSalary] = useState<number>(15000);
+  const [salary, setSalary] = useState<number>(10000);
 
   const [salaryDay, setSalaryDay] = useState<number>(15);
 
@@ -71,7 +71,7 @@ export const UserConfigContextProvider: FC<{ children: ReactNode }> = ({
       newAfternoonTime: _afternoonTime
         ? JSON.parse(_afternoonTime)
         : ["11:50", "13:20"],
-      newSalary: _salary || 15000,
+      newSalary: _salary || 10000,
       newResetTime: _resetTime || EResetTime.周末双休,
       newSalaryDay: _salaryDay || 15,
     });
