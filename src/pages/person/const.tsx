@@ -24,16 +24,16 @@ export const FunctionList = [
       });
     },
   },
-  {
-    name: "支持一下",
-    icon: "money",
-    action: () => {
-      zanShang.setZanShangImg(
-        "https://image.jimmyxuexue.top/upload/1722324549712zanshang.jpg"
-      );
-      zanShang.setZanShang(true);
-    },
-  },
+  // {
+  //   name: "支持一下",
+  //   icon: "money",
+  //   action: () => {
+  //     zanShang.setZanShangImg(
+  //       "https://image.jimmyxuexue.top/upload/1722324549712zanshang.jpg"
+  //     );
+  //     zanShang.setZanShang(true);
+  //   },
+  // },
 ] as {
   name: string;
   icon: string;
