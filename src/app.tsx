@@ -1,5 +1,5 @@
 import "./app.scss";
-import { queryConfig } from "@/api/react-query";
+import "abortcontroller-polyfill/dist/abortcontroller-polyfill-only";
 import "taro-ui/dist/style/components/input.scss";
 import "taro-ui/dist/style/components/form.scss";
 import "taro-ui/dist/style/components/avatar.scss";
@@ -14,12 +14,15 @@ import "taro-ui/dist/style/components/fab.scss";
 import "taro-ui/dist/style/components/range.scss";
 import "taro-ui/dist/style/components/curtain.scss";
 import "taro-ui/dist/style/components/divider.scss";
+import { ComposeProviders } from "./core/ComposeProviders";
+import { ApiProvider } from "./api/ApiProvider";
+import { useError } from "@tarojs/taro";
 
 export default function App(props) {
-  const { QueryClientProvider, queryClient } = queryConfig();
+  useError((error) => console.log("error~~", error));
   return (
-    <QueryClientProvider client={queryClient} contextSharing={true}>
+    <ComposeProviders components={[ApiProvider]}>
       {props.children}
-    </QueryClientProvider>
+    </ComposeProviders>
   );
 }

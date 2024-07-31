@@ -1,6 +1,6 @@
+import { ClientError } from "@/api/ApiProvider";
 import { get } from "@/api/client";
-import { ClientError } from "@/api/react-query";
-import { QueryKey, UseQueryOptions, useQuery } from "react-query";
+import { UndefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 
 type TBingImageItem = {
   startdate: string;
@@ -23,14 +23,15 @@ export type TBingImageList = {
   images: TBingImageItem[];
 };
 
-export function useBingBg(
-  queryKey: QueryKey,
-  variable: {},
-  config?: UseQueryOptions<TBingImageList, ClientError>
-) {
-  return useQuery<TBingImageList, ClientError>(
-    queryKey,
-    () => get("/bingBg/weekList", variable),
-    config
-  );
-}
+export const useBingBg = (
+  config?: Omit<
+    UndefinedInitialDataOptions<TBingImageList, ClientError>,
+    "queryFn"
+  > & { params?: {} }
+) => {
+  return useQuery<TBingImageList, ClientError>({
+    ...config,
+    queryFn: () => get("/bingBg/weekList", config?.params),
+    queryKey: config!.queryKey,
+  });
+};

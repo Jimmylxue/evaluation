@@ -1,6 +1,5 @@
 import { View, Image } from "@tarojs/components";
 import { AtIcon } from "taro-ui";
-import { observer } from "mobx-react-lite";
 import {
   previewImage,
   downloadFile,
@@ -9,10 +8,13 @@ import {
 } from "@tarojs/taro";
 import { useBingBg } from "@/services/bingBg";
 import { Loading } from "@/components/Loading";
+import { memo } from "react";
 
-export default observer(function Index() {
-  const { data, isLoading } = useBingBg(["bingBg"], {});
-
+const Children = () => {
+  const { data, isLoading } = useBingBg({
+    queryKey: ["bingBg"],
+    params: {},
+  });
   return (
     <View className="index px-2 pb-2">
       {isLoading ? (
@@ -66,4 +68,8 @@ export default observer(function Index() {
       )}
     </View>
   );
+};
+
+export default memo(function Index() {
+  return <Children />;
 });
