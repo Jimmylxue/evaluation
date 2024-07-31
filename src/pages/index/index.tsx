@@ -1,11 +1,8 @@
 import { View } from "@tarojs/components";
 import { observer } from "mobx-react-lite";
-import { locationInfo } from "@/store/location";
 import { ActionTab } from "./components/ActionTab";
 import { actionList } from "./const";
 import { AtDivider, AtNoticebar } from "taro-ui";
-
-locationInfo.updateLocation();
 
 export default observer(function Index() {
   return (

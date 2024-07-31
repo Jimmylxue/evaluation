@@ -36,7 +36,6 @@ export class Auth {
   }
 
   setToken(token?: string) {
-    console.log("set", token);
     this._token = token;
     Taro.setStorage({
       key: AUTH_TOKEN_NAME,
