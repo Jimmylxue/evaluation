@@ -11,6 +11,10 @@ export default defineAppConfig({
       root: "subpackages/luckDraw",
       pages: ["pages/index/index"],
     },
+    {
+      root: "subpackages/games",
+      pages: ["pages/bird/index"],
+    },
   ],
   window: {
     backgroundTextStyle: "light",

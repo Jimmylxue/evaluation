@@ -26,4 +26,10 @@ export const actionList = [
     icon: "https://image.jimmyxuexue.top/img/%E5%A4%A7%E8%BD%AC%E7%9B%98.png",
     url: "/subpackages/luckDraw/pages/index/index",
   },
+  {
+    name: "像素鸟挑战",
+    desc: "在繁忙工作间隙，挑战你的反应速度，助小鸟安全飞翔！",
+    icon: "https://image.jimmyxuexue.top/upload/17225012502830.png",
+    url: "/subpackages/games/pages/bird/index",
+  },
 ] as TActionItem[];

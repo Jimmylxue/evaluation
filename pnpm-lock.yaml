@@ -24887,7 +24887,7 @@ snapshots:
     dependencies:
       htmlparser2: 3.10.1
       postcss: 6.0.23
-      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0)(postcss-scss@1.0.6)(postcss@6.0.23)
 
   postcss-import@12.0.1:
     dependencies:
@@ -24930,7 +24930,7 @@ snapshots:
   postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23):
     dependencies:
       postcss: 6.0.23
-      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0)(postcss-scss@1.0.6)(postcss@6.0.23)
       remark: 9.0.0
       unist-util-find-all-after: 1.0.5
 
@@ -25112,7 +25112,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       svgo: 2.8.0
 
-  postcss-syntax@0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23):
+  postcss-syntax@0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0)(postcss-scss@1.0.6)(postcss@6.0.23):
     dependencies:
       postcss: 6.0.23
     optionalDependencies:
@@ -26820,7 +26820,7 @@ snapshots:
       postcss-sass: 0.3.5
       postcss-scss: 1.0.6
       postcss-selector-parser: 3.1.2
-      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.40))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0)(postcss-scss@1.0.6)(postcss@6.0.23)
       postcss-value-parser: 3.3.1
       resolve-from: 4.0.0
       signal-exit: 3.0.7
