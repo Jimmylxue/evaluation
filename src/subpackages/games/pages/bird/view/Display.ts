@@ -1,5 +1,5 @@
 import { depBetween, generateGroup, obstacleMoveSpeed } from "../core/core";
-import { systemInfo } from "../utils";
+import { systemInfo } from "../../../common/utils";
 import { Bg } from "./Bg";
 import { Bird } from "./Bird";
 import { Obstacle } from "./Obstacle";

@@ -1,9 +1,9 @@
 import { Canvas, Image, View } from "@tarojs/components";
-import { createCanvasContext, canvasToTempFilePath } from "@tarojs/taro";
+import { createSelectorQuery, nextTick, Canvas as TCanvas } from "@tarojs/taro";
 import { useEffect, useRef, useState } from "react";
-import { Bird } from "./view/Bird";
-import { getImgFromRemote } from "../../common/utils";
-import { SourceMap, updateTempImgFile } from "./const";
+import { getImgFromRemote, systemInfo } from "../../common/utils";
+import { updateTempImgFile } from "../../common/tempImgFile";
+import { SourceMap } from "./const";
 import { Display } from "./view/Display";
 import { Loading } from "@/components/Loading";
 
@@ -12,36 +12,11 @@ export default function Index() {
   const [gameStatus, setGameStatus] = useState<"pending" | "start" | "over">(
     "pending"
   );
-  const score = useRef<number>(0);
-  const ctx = createCanvasContext("myCanvas");
+  const canvas = useRef<TCanvas>();
+
   const resultBg = useRef<string>("");
 
-  const bird = useRef<Bird>();
   const display = useRef<Display>();
-
-  /**
-   * 创建小鸟
-   */
-  const createBird = () => {
-    bird.current = new Bird(ctx);
-  };
-
-  /**
-   * 创建舞台总进程
-   */
-  const createDisplay = () => {
-    display.current = new Display(ctx, bird.current!);
-    display.current.play((s) => {
-      score.current = s;
-      canvasToTempFilePath({
-        canvasId: "myCanvas",
-        success(result) {
-          resultBg.current = result.tempFilePath;
-          setGameStatus("over");
-        },
-      });
-    });
-  };
 
   const changeImageFromLocal = async (assets: Record<string, string>) => {
     const obj: any = {};
@@ -62,14 +37,27 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    // 初始化页面 获取页面页面的宽高 为了兼容不同尺寸
     if (gameStatus === "start") {
-      createBird();
-      createDisplay();
+      nextTick(() => {
+        const query = createSelectorQuery();
+        query
+          .select("#myCanvas")
+          .fields({ node: true, size: true })
+          .exec((res) => {
+            canvas.current = res[0].node;
+            canvas.current!.width = systemInfo.screenWidth;
+            canvas.current!.height = systemInfo.screenHeight;
+            const ctx = canvas.current!.getContext("2d");
+            display.current = new Display(canvas.current!, ctx);
+            display.current.play(() => {
+              const url = canvas.current?.toDataURL("image/png", 1);
+              resultBg.current = url!;
+              setGameStatus("over");
+            });
+          });
+      });
     }
   }, [gameStatus]);
-
-  const clickRef = useRef<any>();
 
   return (
     <View>
@@ -77,21 +65,13 @@ export default function Index() {
         <>
           {gameStatus === "start" ? (
             <Canvas
-              className="fixed"
-              style={{
-                width: `100vw`,
-                height: `100vh`,
-                display: "block",
-              }}
-              canvasId="myCanvas"
-              onTap={() => {
-                bird.current!.updateStatus("up");
-                if (clickRef.current) {
-                  clearTimeout(clickRef.current);
-                }
-                clickRef.current = setTimeout(() => {
-                  bird.current!.updateStatus("down");
-                }, 300);
+              type="2d"
+              id="myCanvas"
+              canvasId="myCanvasId"
+              className=" w-screen h-screen"
+              onClick={(e) => {
+                const point = { x: e.detail.x, y: e.detail.y };
+                display.current?.click(point);
               }}
             ></Canvas>
           ) : (
@@ -101,7 +81,7 @@ export default function Index() {
                 src={
                   gameStatus === "over"
                     ? resultBg.current
-                    : "https://image.jimmyxuexue.top/img/image-20240802113034920.png"
+                    : "https://image.jimmyxuexue.top/upload/1723017347733WechatIMG81.jpg"
                 }
               />
               {gameStatus === "over" && (
@@ -113,7 +93,7 @@ export default function Index() {
                           游戏结束
                         </View>
                         <View className="text-sm text-gray-500 px-2">
-                          您此次得分：{score.current || 0}
+                          您此次得分：{display.current?.score.score || 0}
                         </View>
                       </View>
                       <View className="p-2 mt-2 text-center space-x-1 md:block">
@@ -152,7 +132,6 @@ export default function Index() {
           )}
         </>
       )}
-
       {!loaded && <Loading />}
     </View>
   );

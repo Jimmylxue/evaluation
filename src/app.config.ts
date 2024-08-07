@@ -13,7 +13,7 @@ export default defineAppConfig({
     },
     {
       root: "subpackages/games",
-      pages: ["pages/bird/index"],
+      pages: ["pages/bird/index", "pages/crazyTree/index"],
     },
   ],
   window: {

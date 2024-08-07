@@ -1,5 +1,5 @@
 import { CanvasContext } from "@tarojs/taro";
-import { systemInfo } from "../utils";
+import { systemInfo } from "../../../common/utils";
 import { tempImgFile } from "../const";
 import { obstacleMoveSpeed } from "../core/core";
 

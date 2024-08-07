@@ -12,6 +12,9 @@ export const getImgFromRemote = (url: string): Promise<string> => {
         success: (res) => {
           resolve(res.tempFilePath);
         },
+        fail: () => {
+          console.log("下载失败");
+        },
       });
     } catch (error) {
       reject(error);

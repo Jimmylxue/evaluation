@@ -32,4 +32,10 @@ export const actionList = [
     icon: "https://image.jimmyxuexue.top/upload/17225012502830.png",
     url: "/subpackages/games/pages/bird/index",
   },
+  {
+    name: "疯狂伐木工",
+    desc: "用伐木挑战来解压，让每个工人都能找到乐趣！",
+    icon: "https://image.jimmyxuexue.top/upload/1722659662149npc.png",
+    url: "/subpackages/games/pages/crazyTree/index",
+  },
 ] as TActionItem[];
