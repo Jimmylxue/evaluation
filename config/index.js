@@ -88,6 +88,7 @@ const config = {
     "@/utils": path.resolve(__dirname, "..", "src/utils"),
     "@/store": path.resolve(__dirname, "..", "src/store"),
     "@/assets": path.resolve(__dirname, "..", "src/assets"),
+    "@/subpackages": path.resolve(__dirname, "..", "src/subpackages"),
   },
 };
 

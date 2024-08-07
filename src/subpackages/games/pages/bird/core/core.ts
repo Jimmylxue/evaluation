@@ -1,4 +1,4 @@
-import { getRandomBetween, systemInfo } from "../utils";
+import { getRandomBetween, systemInfo } from "../../../common/utils";
 
 /**
  * 水管的移动速度

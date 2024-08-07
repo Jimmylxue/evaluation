@@ -29,6 +29,7 @@
       "@/utils/*":["./src/utils/*"],
       "@/store/*":["./src/store/*"],
       "@/assets/*":["./src/assets/*"],
+      "@/subpackages/*":["./src/subpackages/*"],
     },
   },
   "include": ["./src", "./types"],
