@@ -12,6 +12,8 @@ export function WeekJob() {
     weekStartProgress,
   } = useWeekJobData();
 
+  console.log("nowWeekState", nowWeekState);
+
   return (
     <View className=" mb-2 shadow-lg px-2 py-4 bg-white flex rounded ">
       <Image
@@ -51,6 +53,33 @@ export function WeekJob() {
         <View className=" w-full ml-2">
           <View className=" text-lg font-semibold text-[#333] flex items-center">
             距离上班{" "}
+            <AtCountdown
+              className=" ml-2"
+              isCard
+              isShowDay
+              hours={weekEndMsg?.hours}
+              minutes={weekEndMsg?.minutes}
+              day={weekEndMsg?.days}
+              seconds={weekEndMsg?.seconds}
+            />
+          </View>
+          <View className=" my-2">
+            <AtProgress
+              percent={weekEndProgress}
+              status={weekEndProgress === 100 ? "success" : "progress"}
+              isHidePercent
+              color="#81a3ee"
+            />
+          </View>
+          <View className="text-gray-600 text-sm">
+            假期余额所剩不多了，疲惫上班
+          </View>
+        </View>
+      )}
+      {nowWeekState === ECheckStatus.大于结束时间 && (
+        <View className=" w-full ml-2">
+          <View className=" text-lg font-semibold text-[#333] flex items-center">
+            距离开工{" "}
             <AtCountdown
               className=" ml-2"
               isCard

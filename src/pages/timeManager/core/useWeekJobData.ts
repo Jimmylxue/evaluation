@@ -23,23 +23,38 @@ export function useWeekJobData() {
     weekReset = [7];
   }
 
-  const weekStart = `${getDatesByDayNumber(getPrevDayNumber(weekReset[0]))} ${
-    workTime?.[1] || "18:00:00"
-  }`;
+  console.log("workTime", workTime);
+
+  const weekStart = `${getDatesByDayNumber(
+    getPrevDayNumber(weekReset[0]),
+    true
+  )} ${workTime?.[1] || "18:00:00"}`;
+
+  console.log("weekStart", weekStart, getPrevDayNumber(weekReset[0]));
 
   const weekEnd = `${getDatesByDayNumber(
     getNextDayNumber(weekReset[weekReset.length - 1])
   )} ${workTime?.[0] || "09:00:00"}`;
+
+  console.log(
+    "weekEnd",
+    getNextDayNumber(weekReset[weekReset.length - 1]),
+    weekEnd
+  );
 
   /**
    * 距离周末的数据
    */
   const weekStartMsg = timeUntil(weekStart);
 
+  console.log("weekEnd", weekEnd);
+
   /**
    * 距离周末结束数据
    */
   const weekEndMsg = timeUntil(weekEnd);
+
+  console.log("weekEndMsg", weekEndMsg);
 
   /**
    * 当前时间 和 周末时间之间的状态
@@ -49,6 +64,8 @@ export function useWeekJobData() {
     weekEnd,
     dayjs().format("YYYY-MM-DD HH:mm:ss")
   );
+
+  console.log("nowWeekState", nowWeekState);
 
   /**
    * 距离周末进度
@@ -82,6 +99,14 @@ export function useWeekJobData() {
     );
   } else {
     // todo 如果是 休息日是[3,4] 那么这种情况也需要处理 不过这个不急 可以后面再写
+    weekEndProgress = calculateProgress(
+      `${getDatesByDayNumber(getPrevDayNumber(weekReset[0]))} ${
+        workTime?.[1] || "18:00:00"
+      }`,
+      `${getDatesByDayNumber(
+        getNextDayNumber(weekReset[weekReset.length - 1])
+      )} ${workTime?.[0] || "09:00:00"}`
+    );
   }
 
   return {

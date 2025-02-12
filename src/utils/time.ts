@@ -112,8 +112,12 @@ export function getPreviousAndNextMonth(dateStr) {
 
 /**
  * 根据周几 获取 完整的日期格式
+ * usePreWeekDate 是否使用上个周的时间
  */
-export function getDatesByDayNumber(dayNumber) {
+export function getDatesByDayNumber(
+  dayNumber,
+  usePreWeekDats: boolean = false
+) {
   // 获取今天的日期
   const today = dayjs();
 
@@ -122,7 +126,9 @@ export function getDatesByDayNumber(dayNumber) {
 
   // 判断今天的周数是否大于传入的 dayNumber
   let targetDate;
-  if (today.day() >= dayNumber) {
+  if (today.day() === 0 && usePreWeekDats) {
+    targetDate = startOfWeek.subtract(7, "day");
+  } else if (today.day() >= dayNumber) {
     // 如果今天的周数大于 dayNumber，获取下一周的日期
     targetDate = startOfWeek.add(7, "day").add(dayNumber - 1, "day");
   } else {
@@ -199,7 +205,8 @@ export function checkTimeStatus(
   } else if (checkDate > endDate) {
     return ECheckStatus.处于两个时间内;
   } else {
-    return ECheckStatus.大于结束时间;
+    // return ECheckStatus.大于结束时间;
+    return ECheckStatus.小于开始时间;
   }
 }
 

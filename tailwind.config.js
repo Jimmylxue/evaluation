@@ -2,7 +2,17 @@
 module.exports = {
   content: ["./public/index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        slideIn: {
+          "0%": { transform: "translateX(-10px)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+      },
+      animation: {
+        slideIn: "slideIn 0.4s ease-out forwards",
+      },
+    },
   },
   plugins: [],
   corePlugins: {
