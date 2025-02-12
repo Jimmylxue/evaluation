@@ -5,6 +5,7 @@ export default defineAppConfig({
     "pages/person/index",
     "pages/register/index",
     "pages/timeManager/index",
+    "pages/emoticon/index",
   ],
   subPackages: [
     {
