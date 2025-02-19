@@ -5,7 +5,6 @@ export default defineAppConfig({
     "pages/person/index",
     "pages/register/index",
     "pages/timeManager/index",
-    "pages/emoticon/index",
   ],
   subPackages: [
     {
@@ -15,6 +14,10 @@ export default defineAppConfig({
     {
       root: "subpackages/games",
       pages: ["pages/bird/index", "pages/crazyTree/index"],
+    },
+    {
+      root: "subpackages/emoticon",
+      pages: ["pages/index/index"],
     },
   ],
   window: {

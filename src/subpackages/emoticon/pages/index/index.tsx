@@ -2,12 +2,19 @@ import { View, Input, Button, Image } from "@tarojs/components";
 import { useState } from "react";
 import Taro from "@tarojs/taro";
 import StarryBackground from "@/components/StarryBackground";
+import { useGenerateEmoticon } from "@/services/emoticon";
 
 export default function Index() {
   const [mainText, setMainText] = useState("");
   const [subText, setSubText] = useState("");
   const [generatedImage, setGeneratedImage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { mutate: generateEmoticon, isPending: isLoading } =
+    useGenerateEmoticon({
+      onSuccess(data) {
+        setGeneratedImage(data[0]);
+      },
+    });
 
   // 处理主文本输入
   const handleMainTextInput = (e) => {
@@ -28,32 +35,9 @@ export default function Index() {
       });
       return;
     }
-
-    setIsLoading(true);
-    try {
-      // TODO: 替换为实际的API接口
-      const response = await Taro.request({
-        url: "https://api.example.com/generate-emoticon",
-        method: "POST",
-        data: {
-          mainText: mainText.trim(),
-          subText: subText.trim(),
-        },
-      });
-
-      if (response.statusCode === 200) {
-        setGeneratedImage(response.data.imageUrl);
-      } else {
-        throw new Error("生成失败");
-      }
-    } catch (error) {
-      Taro.showToast({
-        title: "生成失败，请重试",
-        icon: "none",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await generateEmoticon({
+      prompt: `${mainText.trim()} ${subText.trim()}`,
+    });
   };
 
   // 保存图片

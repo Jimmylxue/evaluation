@@ -9,7 +9,8 @@ export type TPage =
   | "/pages/luckDraw/index"
   | "/subpackages/luckDraw/pages/index/index"
   | "/subpackages/games/pages/bird/index"
-  | "/subpackages/games/pages/crazyTree/index";
+  | "/subpackages/games/pages/crazyTree/index"
+  | "/subpackages/emoticon/pages/index/index";
 
 export function navigate(url: TPage) {
   return Taro.navigateTo({

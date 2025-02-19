@@ -15,10 +15,16 @@ export const actionList = [
     url: "/pages/timeManager/index",
   },
   {
-    name: "精美壁纸",
+    name: "bing壁纸",
     desc: "换个壁纸换个心情，用更好的心情来摸鱼",
     icon: "https://image.jimmyxuexue.top/img/%E4%B8%BB%E9%A2%98%E5%A3%81%E7%BA%B8.png",
     url: "/pages/wallpaper/index",
+  },
+  {
+    name: "鸭鸭表情包",
+    desc: "根据用户输入文案生成Q版可爱表情包的工具",
+    icon: "https://image.jimmyxuexue.top/img/4.4%E5%84%BF%E7%AB%A5%E7%8E%A9%E5%85%B7.png",
+    url: "/subpackages/emoticon/pages/index/index",
   },
   {
     name: "吃什么转盘",
