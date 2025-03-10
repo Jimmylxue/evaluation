@@ -19,6 +19,10 @@ export default defineAppConfig({
       root: "subpackages/emoticon",
       pages: ["pages/index/index"],
     },
+    {
+      root: "subpackages/bills",
+      pages: ["pages/index/index", "pages/bookkeeping/index"],
+    },
   ],
   window: {
     backgroundTextStyle: "light",

@@ -1,5 +1,5 @@
 import { navigate } from "@/core/route";
-import { Image, View } from "@tarojs/components";
+import { Image, Text, View } from "@tarojs/components";
 import { TActionItem } from "../const";
 
 type TProps = {
@@ -11,12 +11,12 @@ export function ActionTab({ action, index }: TProps) {
   return (
     <View
       className={`
-        bg-white rounded-lg w-full px-4 py-4 mb-3
-        shadow-sm hover:shadow
-        transform hover:translate-x-1
-        transition-all duration-300 ease-out
-        animate-slideIn
-        flex justify-between items-center
+        bg-white rounded-lg w-full p-2.5
+        shadow-sm hover:shadow-md
+        transform hover:-translate-y-0.5
+        transition-all duration-200 ease-out
+        animate-fadeIn
+        flex items-center gap-2
       `}
       style={{
         animationDelay: `${index * 0.1}s`,
@@ -25,14 +25,18 @@ export function ActionTab({ action, index }: TProps) {
         navigate(action.url);
       }}
     >
-      <View className="flex-1">
-        <View className="text-lg font-bold text-gray-800 mb-1">
+      <Image
+        className="w-[64rpx] h-[64rpx] rounded-lg"
+        src={action.icon}
+        mode="aspectFill"
+      />
+      <View className="flex-1 min-w-0">
+        <Text className="text-sm font-medium text-gray-800 truncate">
           {action.name}
-        </View>
-        <View className="text-gray-500 text-sm">{action.desc}</View>
-      </View>
-      <View className="ml-4 transform hover:scale-105 transition-transform duration-300">
-        <Image className="size-[100rpx]" src={action.icon} mode="aspectFill" />
+        </Text>
+        <Text className="text-xs text-gray-500 mt-0.5 block truncate">
+          {action.desc}
+        </Text>
       </View>
     </View>
   );

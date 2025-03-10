@@ -238,7 +238,7 @@ export function getAdjacentWeeks(dateString) {
 }
 
 /**
- * 内部使用 将时间转换为妙
+ * 内部使用 将时间转换为秒
  */
 function convertToSeconds(time) {
   // 如果没有提供秒数，默认设置为 00
@@ -268,4 +268,45 @@ export function smallThan(time1, time2) {
  */
 export function equalThan(time1, time2) {
   return convertToSeconds(time1) === convertToSeconds(time2);
+}
+
+/**
+ * 格式化时间 为 2024-03-07
+ */
+export function formatTimeToDay(dateString) {
+  const date = dayjs(dateString);
+  return date.format("YYYY-MM-DD");
+}
+
+/**
+ * 获取近3天的日期 格式化为 YYYY-MM-DD HH:mm:ss
+ */
+export function getThreeDayDate() {
+  const today = dayjs();
+  const threeDayDate = today.subtract(2, "day");
+  return {
+    startTime: threeDayDate.format("YYYY-MM-DD 00:00:00"),
+    endTime: today.format("YYYY-MM-DD 23:59:59"),
+  };
+}
+
+/**
+ * 获取近30天的日期 格式化为 YYYY-MM-DD HH:mm:ss
+ */
+export function getMonthDate() {
+  const today = dayjs();
+  // 获取上个月的今天
+  const lastMonth = today.subtract(1, "month");
+
+  // 如果上个月的这一天不存在（比如3月31日的上个月是2月，没有2月31日）
+  // 那么就取上个月的最后一天
+  const startDate =
+    lastMonth.date() > lastMonth.daysInMonth()
+      ? lastMonth.endOf("month")
+      : lastMonth;
+
+  return {
+    startTime: startDate.format("YYYY-MM-DD 00:00:00"),
+    endTime: today.format("YYYY-MM-DD 23:59:59"),
+  };
 }

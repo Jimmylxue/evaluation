@@ -8,6 +8,7 @@ export const useGenerateEmoticon = (
     ClientError,
     {
       prompt: string;
+      returnUrl: boolean;
     }
   >
 ) => {
@@ -16,6 +17,7 @@ export const useGenerateEmoticon = (
     ClientError,
     {
       prompt: string;
+      returnUrl: boolean;
     }
   >({
     mutationFn: async (data) => {

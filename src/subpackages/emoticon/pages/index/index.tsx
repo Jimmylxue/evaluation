@@ -37,6 +37,7 @@ export default function Index() {
     }
     await generateEmoticon({
       prompt: `${mainText.trim()} ${subText.trim()}`,
+      returnUrl: true,
     });
   };
 
