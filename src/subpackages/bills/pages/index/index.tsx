@@ -10,7 +10,6 @@ import { BillsType } from "@/services/bills";
 import { useMonthBillData } from "@/subpackages/bills/core/useMonthData";
 import { showToast } from "@/utils/notice";
 export default function Index() {
-  const navigate = navigateTo;
   const [showAmount, setShowAmount] = useState(true);
   const [showAllBills, setShowAllBills] = useState(false);
 
@@ -21,7 +20,7 @@ export default function Index() {
   const displayBills = showAllBills ? threeDayBills : threeDayBills.slice(0, 5);
 
   const handleAddRecord = () => {
-    navigate({
+    navigateTo({
       url: "/subpackages/bills/pages/bookkeeping/index",
     });
   };
@@ -154,28 +153,12 @@ export default function Index() {
 
       {/* 功能入口 */}
       <View className="mx-4 bg-white rounded-xl p-4 shadow-sm mt-10">
-        <View className="grid grid-cols-3 gap-2">
+        <View className="flex justify-between">
           <View
-            className="flex flex-col items-center py-2 active:opacity-60 transition-opacity"
+            className="flex flex-grow flex-col items-center py-2 active:opacity-60 transition-opacity"
             onClick={() => {
-              showToast({
-                title: "暂未开放",
-                icon: "none",
-              });
-            }}
-          >
-            <View className="w-11 h-11 rounded-xl bg-[#f7f9f7] flex items-center justify-center mb-1">
-              <Text className="text-2xl">📊</Text>
-            </View>
-            <Text className="text-sm text-gray-500">账单明细</Text>
-          </View>
-
-          <View
-            className="flex flex-col items-center py-2 active:opacity-60 transition-opacity"
-            onClick={() => {
-              showToast({
-                title: "暂未开放",
-                icon: "none",
+              navigateTo({
+                url: "/subpackages/bills/pages/history/index",
               });
             }}
           >
@@ -186,7 +169,7 @@ export default function Index() {
           </View>
 
           <View
-            className="flex flex-col items-center py-2 active:opacity-60 transition-opacity"
+            className="flex flex-grow flex-col items-center py-2 active:opacity-60 transition-opacity"
             onClick={() => {
               showToast({
                 title: "暂未开放",

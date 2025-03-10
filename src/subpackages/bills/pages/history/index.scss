@@ -1,0 +1,71 @@
+.bg-gradient {
+  background: linear-gradient(180deg, #dcedc1 0%, #f5f7f5 100%);
+}
+
+.trend-chart {
+  &-container {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  &-grid {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 40px;
+    pointer-events: none;
+  }
+
+  &-bars {
+    height: 160px;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 24px;
+  }
+
+  &-bar {
+    flex: 1;
+    transition: height 0.3s ease;
+    min-height: 4px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-light-color) 100%);
+
+    &-wrapper {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      height: 100%;
+    }
+
+    &-tooltip {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    &:active {
+      .trend-chart-bar-tooltip {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -21,7 +21,11 @@ export default defineAppConfig({
     },
     {
       root: "subpackages/bills",
-      pages: ["pages/index/index", "pages/bookkeeping/index"],
+      pages: [
+        "pages/index/index",
+        "pages/bookkeeping/index",
+        "pages/history/index",
+      ],
     },
   ],
   window: {
