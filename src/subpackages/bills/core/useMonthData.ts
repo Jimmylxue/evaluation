@@ -1,13 +1,15 @@
 import { useCurrentExpense } from "@/services/bills/expense";
 import { useCurrentIncome } from "@/services/bills/income";
-import { getMonthDate } from "@/utils/time";
+
+type TProps = {
+  startTime: string;
+  endTime: string;
+};
 
 /**
  * 获取 近一个月 支出 、 收入 集合数据
  */
-export const useMonthBillData = () => {
-  const { startTime, endTime } = getMonthDate();
-
+export const useMonthBillData = ({ startTime, endTime }: TProps) => {
   const { data: expenseData, refetch: refetchExpense } = useCurrentExpense({
     queryKey: ["expenseMonth"],
     params: {
