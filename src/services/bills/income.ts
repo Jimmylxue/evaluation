@@ -30,7 +30,7 @@ export function useIncomeTypeList(
   });
 }
 
-export type TIncome = {
+type TIncome = {
   id: string;
   price: number;
   cover: string;

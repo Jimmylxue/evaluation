@@ -293,7 +293,7 @@ export function getThreeDayDate() {
 /**
  * 获取近30天的日期 格式化为 YYYY-MM-DD HH:mm:ss
  */
-export function getCurrentMonthDate() {
+export function getMonthDate() {
   const today = dayjs();
   // 获取上个月的今天
   const lastMonth = today.subtract(1, "month");
@@ -310,38 +310,3 @@ export function getCurrentMonthDate() {
     endTime: today.format("YYYY-MM-DD 23:59:59"),
   };
 }
-
-/**
- * 获取这个日期所属的年月的开始时间和结束时间，比如今天是 2025年3月11日。
- * 那么这块返回的开始时间和结束时间应该是 2025-03-01 00:00:00 和 2025-03-31 23:59:59
- */
-
-export const getMonthDate = (currentDate: Date) => {
-  // 获取当前月份的第一天
-  const firstDay = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth(),
-    1
-  );
-
-  // 获取下个月的第一天，然后减去1毫秒得到当前月份的最后一刻
-  const lastDay = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth() + 1,
-    1
-  );
-  lastDay.setMilliseconds(-1);
-
-  // 格式化日期字符串
-  const startTime = `${firstDay.getFullYear()}-${String(
-    firstDay.getMonth() + 1
-  ).padStart(2, "0")}-01 00:00:00`;
-  const endTime = `${lastDay.getFullYear()}-${String(
-    lastDay.getMonth() + 1
-  ).padStart(2, "0")}-${String(lastDay.getDate()).padStart(2, "0")} 23:59:59`;
-
-  return {
-    startTime,
-    endTime,
-  };
-};

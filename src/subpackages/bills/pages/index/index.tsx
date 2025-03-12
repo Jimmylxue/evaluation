@@ -4,7 +4,7 @@ import { navigateTo } from "@tarojs/taro";
 import "./index.scss";
 import EmptyNavbar from "@/components/EmptyNavbar";
 import { useThreeDayBillData } from "@/subpackages/bills/core/useThreeDayBillData";
-import { formatTimeToDay, getCurrentMonthDate } from "@/utils/time";
+import { formatTimeToDay } from "@/utils/time";
 import classNames from "classnames";
 import { BillsType } from "@/services/bills";
 import { useMonthBillData } from "@/subpackages/bills/core/useMonthData";
@@ -15,12 +15,7 @@ export default function Index() {
 
   const { threeDayBills } = useThreeDayBillData();
 
-  const { startTime, endTime } = getCurrentMonthDate();
-
-  const { monthExpensePrice, monthIncomePrice } = useMonthBillData({
-    startTime,
-    endTime,
-  });
+  const { monthExpensePrice, monthIncomePrice } = useMonthBillData();
 
   const displayBills = showAllBills ? threeDayBills : threeDayBills.slice(0, 5);
 
@@ -148,10 +143,7 @@ export default function Index() {
           </View>
         ) : (
           <View className="flex flex-col items-center justify-center py-12">
-            <Image
-              src={"https://image.jimmyxuexue.top/img/emoji_u1f423.png"}
-              className="w-32 h-32 mb-4 opacity-50"
-            />
+            <Text className="text-4xl mb-3">🦆</Text>
             <Text className="text-gray-400 text-sm">
               还没有记账呢，快去记一笔吧～
             </Text>
