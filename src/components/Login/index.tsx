@@ -103,6 +103,7 @@ export function useLoginDialog() {
                 const code = await getLoginCode();
                 await mutateAsync({ ...userInfo, code });
               } else {
+                console.log(",,,,");
                 await updateUser({
                   ...userInfo,
                   id: _user.current?.id!,

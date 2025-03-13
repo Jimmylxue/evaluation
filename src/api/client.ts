@@ -25,8 +25,8 @@ enum ErrorCode {
 }
 
 // const APP_ENV = process.env.APP_ENV || "dev";
-const APP_ENV: any = "prod";
-// const APP_ENV: any = "dev";
+// const APP_ENV: any = "prod";
+const APP_ENV: any = "dev";
 
 let serverUrl: string;
 

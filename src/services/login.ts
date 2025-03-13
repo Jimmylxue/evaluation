@@ -51,7 +51,7 @@ export const useUpdateUser = (
     Pick<TUser, "id" | "avatar" | "username">
   >({
     mutationFn: async (data) => {
-      const response: any = await post("/user/login_by_mini_program", data);
+      const response: any = await post("/user/update", data);
       console.log("response", response);
       return response;
     },
