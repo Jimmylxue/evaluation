@@ -85,6 +85,15 @@ let loginLock = new AsyncLock();
 
 async function fetch(option: Taro.request.Option) {
   const res = await Taro.request(option);
+
+  if (res.statusCode === 400) {
+    showToast({ title: JSON.stringify(res?.data?.message.join(",")) });
+    throw {
+      statusCode: res.statusCode,
+      ...res.data,
+    };
+  }
+
   if (![200, 201].includes(res.statusCode) || res.data.code !== 200) {
     showToast({ title: res.data?.message || res.data?.result });
     throw {
@@ -123,7 +132,7 @@ async function loginRequiredRequest({
     const code = await getLoginCode();
 
     const res = await fetch({
-      url: getRequestUrl("/user/login_by_mini_program"),
+      url: getRequestUrl("/mini/login"),
       header: makeAuthHeader(),
       method: "POST",
       data: {

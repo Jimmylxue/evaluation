@@ -30,7 +30,7 @@ export const useLogin = (
     }
   >({
     mutationFn: async (data) => {
-      const response: any = await post("/user/login_by_mini_program", data);
+      const response: any = await post("/mini/login", data);
       console.log("response", response);
       return response;
     },

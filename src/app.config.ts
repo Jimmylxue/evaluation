@@ -27,6 +27,10 @@ export default defineAppConfig({
         "pages/history/index",
       ],
     },
+    {
+      root: "subpackages/scanAuth",
+      pages: ["pages/index/index"],
+    },
   ],
   window: {
     backgroundTextStyle: "light",

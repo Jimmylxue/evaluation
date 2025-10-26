@@ -18,6 +18,7 @@ export type TUser = {
   phone?: string;
   sex: ESex;
   username: string;
+  nickname: string;
 };
 
 export class Auth {

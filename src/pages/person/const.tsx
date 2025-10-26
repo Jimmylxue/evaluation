@@ -1,7 +1,6 @@
 import { showToast } from "@/utils/notice";
 import { ButtonProps } from "@tarojs/components";
-import { setClipboardData } from "@tarojs/taro";
-import { zanShang } from "./core/zanshang";
+import { setClipboardData, scanCode, navigateTo } from "@tarojs/taro";
 
 export const FunctionList = [
   {
@@ -22,6 +21,25 @@ export const FunctionList = [
           });
         },
       });
+    },
+  },
+  {
+    name: "扫一扫",
+    icon: "camera",
+    action: async () => {
+      const res = await scanCode({});
+      console.log("res", res);
+      try {
+        const scanResult = JSON.parse(res.result);
+        if (scanResult.type === "login") {
+          const { qr_id, token } = scanResult;
+          navigateTo({
+            url: `/subpackages/scanAuth/pages/index/index?qr_id=${qr_id}&token=${token}`,
+          });
+        }
+      } catch (error) {
+        showToast({ title: "请扫描正确二维码", icon: "none" });
+      }
     },
   },
   // {
